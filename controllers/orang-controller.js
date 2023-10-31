@@ -19,8 +19,22 @@ module.exports = {
     },
 
     addData: (req, res) => {
+        const data = req.body;
+        console.log(data)
 
+        const newOrang = {
+            id: Orang[Orang.length - 1].id + 1,
+            value: data.value,
+        }
+
+        Orang.push(newOrang)
+
+        res.status(201).json({
+            message: "OK",
+            data: newOrang
+        })
     },
+
 
     editDataById: (req, res) => {
 

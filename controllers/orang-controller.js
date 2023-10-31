@@ -37,7 +37,20 @@ module.exports = {
 
 
     editDataById: (req, res) => {
+        const { id } = req.params;
+        const newOrang = req.body;
 
+        const index = Orang.findIndex((item) => item.id == id);
+        if (index === -1) {
+            return res.status(404).json({ error: "GK ADAA" })
+        }
+
+        Orang[index] = { ...Orang[index], ...newOrang };
+
+        res.status(201).json({
+            message: "DAta berhasil di ubah",
+            data: newOrang
+        })
     },
 
     deleteDataById: (req, res) => {
